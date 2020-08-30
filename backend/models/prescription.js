@@ -8,6 +8,7 @@ const prescriptionSchema = mongoose.Schema({
   verified: { type: Boolean, required: true },
   awaitingRefil: { type: Boolean, required: true },
   createdAt: { type: Date, default: Date.now },
+  imageURL: { type: String }
 });
 
 module.exports = mongoose.model("Prescription", prescriptionSchema);

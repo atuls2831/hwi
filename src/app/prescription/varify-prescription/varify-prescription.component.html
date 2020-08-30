@@ -16,6 +16,10 @@
         </mat-list-item>
       </mat-list>
       <br />
+      <div class="post-image">
+        <img [src]="pres.imageURL" [alt]="pres.imageURL" />
+      </div>
+      <br />
       <button mat-raised-button (click)="onVerify(pres)" color="primary">
         Verify
       </button>

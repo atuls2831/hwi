@@ -5,6 +5,7 @@ import { PrescriptionService } from '../prescription.service';
 import { MatDialog } from '@angular/material/dialog';
 import { WebcamDialogComponent } from 'src/app/webcam-dialog/webcam-dialog.component';
 import { WebcamImage } from 'ngx-webcam';
+import { VerifyResultComponent } from 'src/app/verify-result/verify-result.component';
 
 @Component({
   selector: 'app-prescription-list',
@@ -62,9 +63,20 @@ export class PrescriptionListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.presService
       .requestRefill(prescription._id, this.fileToUpload)
-      .subscribe(() => {
+      .subscribe((response: any) => {
+        this.isLoading = false;
+
+        if (response.Similarity) {
+          this.dialog.open(VerifyResultComponent, {
+            data: {
+              score: response.Similarity
+            }
+          })
+        }
+
+        console.log(response);
         this.presService.getPrescriptions();
-      });
+      }, err => this.isLoading = false);
   }
 
   onTakePhoto() {

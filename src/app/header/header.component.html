@@ -2,12 +2,12 @@
   <main><a routerLink="/">GetMeds</a></main>
   <span class="spacer"></span>
   <ul>
-    <li *ngIf="userIsAuthenticated">
+    <li *ngIf="userIsAdmin">
       <a mat-button routerLink="/verify" routerLinkActive="mat-accent">
         Verify
       </a>
     </li>
-    <li *ngIf="userIsAuthenticated">
+    <li *ngIf="userIsAdmin">
       <a mat-button routerLink="/complete" routerLinkActive="mat-accent">
         Pending Orders
       </a>

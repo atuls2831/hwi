@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const medicineRoutes = require("./routes/medicine");
 const presciptionRoutes = require("./routes/prescription");
+const path = require("path");
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/images", express.static(path.join("images")));
 app.use("/api/user", userRoutes);
 app.use("/api/medicine", medicineRoutes);
 app.use("/api/prescription", presciptionRoutes);

@@ -2,11 +2,17 @@ const express = require("express");
 const PrescriptionController = require("../controllers/prescription");
 const checkAuth = require("../middleware/check-auth");
 const checkAdmin = require("../middleware/check-admin");
-const extractFile = require("../middleware/tempFile");
+const extractFileMemory = require("../middleware/tempFile");
+const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
-router.post("", checkAuth, PrescriptionController.createPrescription);
+router.post(
+  "",
+  checkAuth,
+  extractFile,
+  PrescriptionController.createPrescription
+);
 
 router.get("", checkAuth, PrescriptionController.getPrescriptions);
 
@@ -38,7 +44,7 @@ router.get(
 router.post(
   "/recognise/:id",
   checkAuth,
-  extractFile,
+  extractFileMemory,
   PrescriptionController.requestRefil
 );
 

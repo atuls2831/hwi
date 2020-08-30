@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
         this.userIsAuthenticated = isAuthenticated;
       });
     this.userIsAuthenticated = this.authService.getIsAuth();
-    this.userIsAdmin = this.authService.getUserId() == '5f49fbea181bfb08243ea815'
+    this.userIsAdmin = this.authService.getUserId() === '5f49fbea181bfb08243ea815';
   }
 
   ngOnDestroy() {

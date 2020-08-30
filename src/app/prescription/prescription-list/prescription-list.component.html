@@ -17,6 +17,11 @@
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
+          <br />
+          <div class="post-image">
+            <img [src]="p.imageURL" [alt]="p.imageURL" />
+          </div>
+          <br />
         </mat-expansion-panel>
       </mat-accordion>
       <div *ngIf="!pres.length">No items</div>
@@ -38,11 +43,16 @@
             </mat-list-item>
           </mat-list>
           <br />
+          <div class="post-image">
+            <img [src]="p.imageURL" [alt]="p.imageURL" />
+          </div>
+          <br />
+          <br />
           <mat-divider></mat-divider>
           <br />
           <div *ngIf="needsFileUpload(p)">
             <h4>Photo verification needed to request refill</h4>
-            <button mat-raised-button (click)="onTakePhoto()" color="primary">
+            <button mat-raised-button type="button" (click)="onTakePhoto()" color="primary">
               Take photo
             </button>
           </div>
@@ -75,6 +85,11 @@
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
+          <br />
+          <div class="post-image">
+            <img [src]="p.imageURL" [alt]="p.imageURL" />
+          </div>
+          <br />
         </mat-expansion-panel>
       </mat-accordion>
       <div *ngIf="!presWaitingRefill.length">No items</div>

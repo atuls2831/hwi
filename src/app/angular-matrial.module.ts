@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   // importing done automatically by angular
@@ -26,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDialogModule,
     MatDividerModule,
     MatTabsModule,
+    MatDatepickerModule,
   ],
 })
 export class AngularMaterialModule {}

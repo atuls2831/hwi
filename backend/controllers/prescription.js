@@ -30,7 +30,8 @@ exports.deletePrescription = async (req, res) => {
 
 exports.createPrescription = async (req, res) => {
   const userId = req.userData.userId;
-  const { medicines } = req.body;
+  const medicines = req.body.medicines.split(",");
+  console.log(medicines);
   // determine wheather id check is required
   const medicinesRequireId = await Medicine.find({
     name: { $in: medicines },
@@ -44,12 +45,15 @@ exports.createPrescription = async (req, res) => {
     verified = false;
   }
 
+  const url = req.protocol + "://" + req.get("host");
+
   const prescription = new Prescription({
     userId: userId,
     medicines: medicines,
     idCheck: requireIdCheck,
     verified: verified,
     awaitingRefil: false,
+    imageURL: url + "/images/" + (req.file ? req.file.filename : "default.jpg"),
   });
 
   await prescription.save();
@@ -164,5 +168,8 @@ exports.requestRefil = async (req, res) => {
 
   prescription.awaitingRefil = true;
   await prescription.save();
-  return res.status(200).json({ message: "Refil requested!" });
+  return res.status(200).json({
+    message: "Refil requested!",
+    Similarity: result.FaceMatches[0].Similarity,
+  });
 };

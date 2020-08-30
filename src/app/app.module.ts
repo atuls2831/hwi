@@ -18,6 +18,7 @@ import { PrescriptionListComponent } from './prescription/prescription-list/pres
 import { VarifyPrescriptionComponent } from './prescription/varify-prescription/varify-prescription.component';
 import { WebcamDialogComponent } from './webcam-dialog/webcam-dialog.component';
 import { CompletePrescriptionComponent } from './prescription/complete-prescription/complete-prescription.component';
+import { VerifyResultComponent } from './verify-result/verify-result.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CompletePrescriptionComponent } from './prescription/complete-prescript
     VarifyPrescriptionComponent,
     WebcamDialogComponent,
     CompletePrescriptionComponent,
+    VerifyResultComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { CompletePrescriptionComponent } from './prescription/complete-prescript
   // need to tell Angular to be ready to load this component
   entryComponents: [
     ErrorComponent,
-    WebcamDialogComponent
+    WebcamDialogComponent,
+    VerifyResultComponent
   ],
 })
 export class AppModule {}

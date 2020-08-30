@@ -70,10 +70,12 @@ export class PrescriptionService {
     return this.refillPendingUpdated.asObservable();
   }
 
-  async addPrescription(medicines: string[]) {
-    const postData = {
-      medicines: medicines,
-    };
+  async addPrescription(medicines: string[], image: File | null) {
+    const postData = new FormData();
+    postData.append('medicines', medicines.join());
+    if (image) {
+      postData.append('image', image);
+    }
     const responseData = await this.http
       .post<any>(BACKEND_URL, postData)
       .toPromise();

@@ -17,6 +17,12 @@
       </mat-list>
 
       <br />
+      <div class="post-image">
+        <img [src]="pres.imageURL" [alt]="pres.imageURL" />
+      </div>
+      <br />
+
+      <br />
       <button mat-raised-button (click)="onComplete(pres)" color="primary">
         Mark as completed
       </button>

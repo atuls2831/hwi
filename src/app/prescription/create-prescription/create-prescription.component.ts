@@ -10,6 +10,7 @@ import { PrescriptionService } from '../prescription.service';
 export class CreatePrescriptionComponent implements OnInit {
   allMedicines = [];
   isLoading: Boolean = true;
+  imagePreview: string;
 
   constructor(
     public prescriptionService: PrescriptionService,
@@ -32,10 +33,24 @@ export class CreatePrescriptionComponent implements OnInit {
     });
   }
 
-  async onSubmit(medicines) {
+  async onSubmit(medicines, image) {
+    // console.log(image);
     this.isLoading = true;
     await this.prescriptionService.addPrescription(
-      medicines.map((m) => m.value)
+      medicines.map((m) => m.value),
+      image
     );
+  }
+
+  onImagePick(event: Event) {
+    // explicit type conversion below
+    const file = (event.target as HTMLInputElement).files[0];
+    // not limited to storing text in a form, here we store file object
+    const reader = new FileReader();
+    // callback to run when file is read
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 }
