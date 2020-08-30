@@ -1,0 +1,22 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading">
+  <h1>Select Medicines</h1>
+  <mat-selection-list #medicineList>
+    <mat-list-option
+      *ngFor="let medicine of allMedicines"
+      [value]="medicine.name"
+    >
+      <span [class.text-danger]="medicine.needID">{{ medicine.name }}</span>
+      <mat-divider></mat-divider>
+    </mat-list-option>
+  </mat-selection-list>
+
+  <button
+    (click)="onSubmit(medicineList.selectedOptions.selected)"
+    mat-raised-button
+    color="primary"
+    type="submit"
+  >
+    Submit
+  </button>
+</mat-card>

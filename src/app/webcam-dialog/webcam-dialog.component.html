@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Webcam</h2>
+<mat-dialog-content class="mat-typography">
+  <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="takePhoto()" cdkFocusInitial>Take photo</button>
+</mat-dialog-actions>

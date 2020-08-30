@@ -1,0 +1,25 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <div *ngIf="!unverifiedPrescriptions.length">No items</div>
+  <div *ngFor="let pres of unverifiedPrescriptions">
+    <mat-card>
+      <b>{{ pres.userId.email }}</b
+      ><br />
+      <small class="text-muted">{{
+        pres.createdAt | date: "short":"+0530"
+      }}</small>
+      <br /><br />
+      <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let med of pres.medicines">
+          {{ med }}
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+      <br />
+      <button mat-raised-button (click)="onVerify(pres)" color="primary">
+        Verify
+      </button>
+    </mat-card>
+    <br />
+  </div>
+</div>

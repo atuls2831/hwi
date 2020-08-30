@@ -1,0 +1,85 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading">
+  <mat-tab-group mat-align-tabs="center">
+    <br />
+    <mat-tab label="Verification pending">
+      <br />
+      <mat-accordion *ngIf="pres.length">
+        <mat-expansion-panel *ngFor="let p of pres">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ p.createdAt | date: "short":"+0530" }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let med of p.medicines">
+              {{ med }}
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div *ngIf="!pres.length">No items</div>
+    </mat-tab>
+
+    <mat-tab label="Verified">
+      <br />
+      <mat-accordion *ngIf="presVerified.length">
+        <mat-expansion-panel *ngFor="let p of presVerified">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ p.createdAt | date: "short":"+0530" }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let med of p.medicines">
+              {{ med }}
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+          <br />
+          <mat-divider></mat-divider>
+          <br />
+          <div *ngIf="needsFileUpload(p)">
+            <h4>Photo verification needed to request refill</h4>
+            <button mat-raised-button (click)="onTakePhoto()" color="primary">
+              Take photo
+            </button>
+          </div>
+          <br />
+          <button
+            mat-raised-button
+            *ngIf="canRequestRefill(p)"
+            (click)="onRequestRefill(p)"
+            color="primary"
+          >
+            Request Refill
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div *ngIf="!presVerified.length">No items</div>
+    </mat-tab>
+
+    <mat-tab label="Awaiting refill">
+      <br />
+      <mat-accordion *ngIf="presWaitingRefill.length">
+        <mat-expansion-panel *ngFor="let p of presWaitingRefill">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ p.createdAt | date: "short":"+0530" }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let med of p.medicines">
+              {{ med }}
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div *ngIf="!presWaitingRefill.length">No items</div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
+<br /><br />
